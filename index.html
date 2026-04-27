@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920" />
+    <title>The Writer's Collective &mdash; A Literary Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <!-- Top header -->
+      <header class="topbar">
+        <nav class="topbar__nav topbar__nav--left">
+          <a href="#">Collection</a>
+          <a href="#">Authors</a>
+          <a href="#">Manuscripts</a>
+          <a href="#">Press</a>
+        </nav>
+
+        <a class="topbar__wordmark" href="#">The Writer's Collective</a>
+
+        <nav class="topbar__nav topbar__nav--right">
+          <a href="#">About</a>
+          <a href="#">Curators</a>
+          <a href="#">Contact</a>
+          <a class="topbar__pill" href="#">
+            <span>Visit Library</span>
+            <span class="topbar__pill-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </nav>
+      </header>
+
+      <!-- Hero copy -->
+      <section class="hero">
+        <h1 class="hero__headline">
+          <span class="hero__headline-italic">The Echoes of Stories<span class="hero__headline-comma">:</span></span>
+          <span class="hero__headline-bold">A Literary Collection</span>
+        </h1>
+        <p class="hero__sub">
+          A digital archive celebrating the works<br />
+          of <em>[Writer's Surname]</em>.
+        </p>
+        <a class="hero__cta" href="#">
+          <span>Explore the Tales</span>
+          <span class="hero__cta-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </section>
+
+      <!-- Orbit: paintings rotating around the central logo -->
+      <section class="orbit">
+        <div class="orbit__wall" aria-hidden="true"></div>
+
+        <div class="orbit__viewport">
+          <ul class="orbit__rail" id="orbit-rail" aria-label="Featured works"></ul>
+
+          <!-- Central pivot: minimal Met-style mark -->
+          <div class="pivot" role="img" aria-label="The Writer's Collective mark">
+            <object type="image/svg+xml" data="logo.svg" class="pivot__svg" aria-label="logo"></object>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom three columns -->
+      <section class="footer-grid">
+        <article class="footer-grid__col">
+          <h3 class="footer-grid__title">The Collection Overview</h3>
+          <p class="footer-grid__copy">
+            A curated index of every published novel, novella, essay
+            and unfinished manuscript &mdash; annotated by literary
+            historians.
+          </p>
+        </article>
+
+        <article class="footer-grid__col">
+          <h3 class="footer-grid__title">Literary Inspirations</h3>
+          <p class="footer-grid__copy">
+            Trace the muses, masters and movements that shaped
+            each chapter, from Romantic landscapes to the quiet
+            rebellion of realism.
+          </p>
+        </article>
+
+        <article class="footer-grid__col">
+          <h3 class="footer-grid__title">The Digital Exhibits</h3>
+          <p class="footer-grid__copy">
+            Step inside our online galleries &mdash; first editions,
+            marginalia and rare correspondence, presented with
+            museum-grade reverence.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
