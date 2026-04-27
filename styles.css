@@ -1,0 +1,419 @@
+/* ---------- Tokens ---------- */
+:root {
+  --white: #ffffff;
+  --cream-top: #fbf6ec;
+  --cream: #f3e7cf;
+  --cream-deep: #ecdcb9;
+  --ink: #1a1411;
+  --ink-soft: #6b5f56;
+  --carmine: #a8131b;
+  --carmine-deep: #7a0d12;
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--cream-top);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden; /* the stage owns the viewport */
+}
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Stage ---------- */
+.stage {
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 130% 90% at 50% 8%, var(--white) 0%, var(--cream-top) 38%, var(--cream) 78%, var(--cream-deep) 100%);
+  display: grid;
+  grid-template-rows: 88px 1fr auto;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 88px;
+  height: 88px;
+}
+.topbar__nav {
+  display: flex;
+  gap: 38px;
+  font-size: 14px;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+}
+.topbar__nav--right {
+  justify-content: flex-end;
+  align-items: center;
+}
+.topbar__nav a {
+  position: relative;
+  padding: 6px 0;
+  transition: color .2s ease;
+}
+.topbar__nav a:hover { color: var(--carmine); }
+
+.topbar__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 22px;
+  margin-left: 18px;
+  background: #1a1411;
+  color: #fbf6ec;
+  border-radius: 999px;
+  font-size: 14px;
+}
+.topbar__pill-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  background: #fbf6ec;
+  color: #1a1411;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.topbar__wordmark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+/* ---------- Hero copy ---------- */
+.hero {
+  text-align: center;
+  padding: 56px 80px 0;
+  position: relative;
+  z-index: 20;
+}
+.hero__headline {
+  margin: 0 auto;
+  display: block;
+  max-width: 1280px;
+  font-family: var(--serif);
+  color: var(--ink);
+  line-height: 0.92;
+  letter-spacing: -0.012em;
+}
+.hero__headline-italic {
+  display: block;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 74px;
+  color: var(--ink);
+  margin-bottom: -4px;
+}
+.hero__headline-italic .hero__headline-comma {
+  font-style: italic;
+  color: var(--carmine);
+}
+.hero__headline-bold {
+  display: block;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 92px;
+}
+.hero__sub {
+  margin: 18px auto 0;
+  max-width: 540px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.hero__sub em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--carmine);
+  font-size: 17px;
+  letter-spacing: 0.01em;
+}
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 14px 22px 14px 28px;
+  background: var(--carmine);
+  color: #fbf6ec;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  box-shadow:
+    0 14px 30px -16px rgba(122, 13, 18, 0.55),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.hero__cta:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 18px 36px -16px rgba(122, 13, 18, 0.65),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+}
+.hero__cta-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #fbf6ec;
+  color: var(--carmine);
+  font-size: 13px;
+}
+
+/* ---------- Orbit ---------- */
+.orbit {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  margin-top: 4px;
+  user-select: none;
+}
+.orbit.is-grabbing { cursor: grabbing; }
+
+/* Subtle museum-style wash behind the orbit (no hard band) */
+.orbit__wall {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 56%, rgba(168, 19, 27, 0.10) 0%, rgba(168, 19, 27, 0.05) 35%, transparent 75%);
+}
+
+.orbit__viewport {
+  position: absolute;
+  inset: 0;
+  perspective: 1700px;
+  perspective-origin: 50% 50%;
+}
+.orbit__rail {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform-style: preserve-3d;
+}
+
+/* ---------- Card ----------
+   Two layers:
+     • .orbit__card (outer)    — JS-driven track position. NO CSS transition
+                                  on transform; updates 60fps from rAF.
+     • .orbit__card-pop (inner) — hover pop-out (translateZ + scale).
+                                  CSS-transitioned for a silky hover.        */
+.orbit__card {
+  --x: 0px;
+  --y: 0px;
+  --z: 0px;
+  --rotY: 0deg;
+  --sat: 1;
+  --bri: 1;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 236px;             /* 16:9 */
+  margin: -118px 0 0 -210px; /* center anchor */
+
+  transform:
+    translate3d(var(--x), var(--y), var(--z))
+    rotateY(var(--rotY));
+  transform-style: preserve-3d;
+
+  /* No transition on transform — JS animates it every frame. */
+  transition: filter 260ms ease, opacity 220ms ease;
+
+  filter: saturate(var(--sat)) brightness(var(--bri));
+  cursor: pointer;
+  will-change: transform, opacity, filter;
+}
+
+.orbit__card-pop {
+  --hover-z: 0px;
+  --hover-y: 0px;
+  --hover-scale: 1;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform:
+    translate3d(0, var(--hover-y), var(--hover-z))
+    scale(var(--hover-scale));
+  transition: transform 380ms cubic-bezier(.18, .8, .25, 1);
+}
+
+.orbit__card-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #1a0608;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    0 40px 70px -28px rgba(40, 10, 8, 0.55),
+    0 14px 28px -10px rgba(40, 10, 8, 0.40),
+    inset 0 0 0 1px rgba(255, 240, 210, 0.06);
+  transition: box-shadow 380ms ease;
+}
+.orbit__card-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 230, 200, 0.05) 0%,
+    rgba(0, 0, 0, 0)          30%,
+    rgba(0, 0, 0, 0.22)       100%
+  );
+  pointer-events: none;
+}
+.orbit__card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.orbit__card-caption {
+  position: absolute;
+  left: 50%;
+  bottom: -56px;
+  transform: translateX(-50%) translateY(8px);
+  width: max-content;
+  max-width: 380px;
+  text-align: center;
+  font-family: var(--serif);
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 260ms ease, transform 260ms ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.orbit__card-title {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+}
+.orbit__card-author {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--carmine);
+}
+
+/* Hover: slide forward, scale up, reveal caption. */
+.orbit__card:hover {
+  z-index: 80 !important; /* lift above the logo while inspecting */
+}
+.orbit__card:hover .orbit__card-pop {
+  --hover-z: 120px;
+  --hover-y: -14px;
+  --hover-scale: 1.10;
+}
+.orbit__card:hover .orbit__card-caption {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.orbit__card:hover .orbit__card-frame {
+  box-shadow:
+    0 60px 90px -28px rgba(40, 10, 8, 0.65),
+    0 20px 40px -10px rgba(40, 10, 8, 0.50),
+    inset 0 0 0 1px rgba(255, 240, 210, 0.10);
+}
+
+/* ---------- Central pivot logo ---------- */
+.pivot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 380px;
+  margin: -190px 0 0 -75px;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  transform: translateZ(0);   /* its own stacking context, sits in front */
+  /* a soft cream halo so cards passing behind read clearly */
+  filter: drop-shadow(0 0 60px rgba(251, 246, 236, 0.65))
+          drop-shadow(0 0 18px rgba(251, 246, 236, 0.85));
+}
+.pivot__svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Tint the loaded SVG to carmine red */
+  filter: invert(13%) sepia(90%) saturate(4500%) hue-rotate(348deg) brightness(85%) contrast(95%);
+}
+
+/* ---------- Footer grid ---------- */
+.footer-grid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 0;
+  padding: 6px 220px 32px;
+}
+.footer-grid__col {
+  text-align: center;
+  position: relative;
+  padding: 8px 32px 0;
+}
+.footer-grid__col + .footer-grid__col::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(122, 20, 24, 0.30), transparent);
+}
+.footer-grid__title {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.footer-grid__copy {
+  margin: 0 auto;
+  max-width: 360px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
